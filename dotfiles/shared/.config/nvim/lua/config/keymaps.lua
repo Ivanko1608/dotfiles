@@ -3,10 +3,10 @@
 -- Add any additional keymaps here
 
 -- Disable arrows
-vim.keymap.set({ "n", "i", "v" }, "<Up>", "<Nop>")
-vim.keymap.set({ "n", "i", "v" }, "<Down>", "<Nop>")
-vim.keymap.set({ "n", "i", "v" }, "<Left>", "<Nop>")
-vim.keymap.set({ "n", "i", "v" }, "<Right>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<Up>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<Down>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<Left>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<Right>", "<Nop>")
 
 -- jk to escape
 vim.keymap.set("i", "jk", "<Esc>")
