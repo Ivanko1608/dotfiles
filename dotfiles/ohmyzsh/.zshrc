@@ -122,7 +122,7 @@ alias vim="nvim"
 alias v="nvim"
 
 alias wayconfig="vim .config/waybar/config.jsonc"
-alias hyprconfig="vim .config/hypr/hyprland.conf"
+alias hyprconfig="vim ~/.config/hypr/hyprland.lua"
 
 # Init zoxide
 eval "$(zoxide init zsh)"

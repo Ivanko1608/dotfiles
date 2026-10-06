@@ -7,7 +7,8 @@ choice=$(printf '%s\n' "󰌾  Lock" "󰤄  Suspend" "󰜉  Reboot" "󰐥  Shutdo
 case "$choice" in
   *Lock) hyprlock ;;
   *Suspend) systemctl suspend ;;
-  *Reboot) systemctl reboot ;;
-  *Shutdown) systemctl poweroff ;;
-  *"Log out") ~/.config/hypr/scripts/dispatch.sh exit ;;
+  # hyprshutdown closes apps gracefully before exiting Hyprland
+  *Reboot) hyprshutdown -t 'Rebooting...' -p 'systemctl reboot' ;;
+  *Shutdown) hyprshutdown -t 'Shutting down...' -p 'systemctl poweroff' ;;
+  *"Log out") hyprshutdown -t 'Logging out...' ;;
 esac
