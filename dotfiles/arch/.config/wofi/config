@@ -1,0 +1,15 @@
+width=600
+height=400
+location=center
+orientation=vertical
+halign=fill
+prompt=Search
+lines=10
+columns=1
+allow_images=true
+allow_markup=true
+no_actions=false
+gtk_dark=true
+insensitive=true        # case-insensitive search
+term=kitty              # terminal for running terminal apps
+run-always-sh=true      # run everything through $SHELL for aliases
