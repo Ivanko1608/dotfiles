@@ -20,7 +20,7 @@ hl.monitor({ output = "", mode = "highres", position = "auto", scale = 2 })
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local browser     = "chromium"
-local menu        = "rofi -show drun"
+local menu        = "wofi --show drun"
 
 
 -------------------
@@ -210,7 +210,7 @@ hl.bind("ALT + SPACE", hl.dsp.exec_cmd(menu))
 
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprshutdown -t 'Logging out...'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/.config/waybar/power-menu.sh"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
