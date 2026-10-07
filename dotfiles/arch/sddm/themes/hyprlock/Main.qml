@@ -146,6 +146,27 @@ Rectangle {
         font.pixelSize: u * 1.6
     }
 
+    // Caps lock and keyboard layout, under the right edge of the field
+    Row {
+        anchors.top: field.bottom
+        anchors.topMargin: u * 1.2
+        anchors.right: field.right
+        spacing: u * 2
+
+        Text {
+            visible: keyboard.capsLock
+            text: "caps lock"
+            color: config.accent
+            font.family: config.font
+            font.pixelSize: u * 1.6
+        }
+        BarButton {
+            visible: keyboard.layouts.length > 1
+            text: visible ? keyboard.layouts[keyboard.currentLayout].shortName : ""
+            onClicked: keyboard.currentLayout = (keyboard.currentLayout + 1) % keyboard.layouts.length
+        }
+    }
+
     // Bottom bar: session on the left, power on the right
     component BarButton: Text {
         signal clicked()
