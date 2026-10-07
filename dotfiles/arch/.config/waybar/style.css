@@ -94,6 +94,15 @@ tooltip {
   color: #e0af68;
 }
 
+#custom-claude-usage {
+  margin: 0 7.5px;
+}
+
+#custom-claude-usage.stale {
+  opacity: 0.5;
+}
+
+#custom-claude-usage.error,
 #battery.critical:not(.charging) {
   color: @urgent;
 }
