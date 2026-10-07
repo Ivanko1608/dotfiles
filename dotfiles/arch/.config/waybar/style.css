@@ -98,6 +98,14 @@ tooltip {
   margin: 0 7.5px;
 }
 
+#custom-screen-record {
+  margin: 0 18px 0 7.5px;
+}
+
+#custom-screen-record.recording {
+  color: @urgent;
+}
+
 #custom-claude-usage.stale {
   opacity: 0.5;
 }

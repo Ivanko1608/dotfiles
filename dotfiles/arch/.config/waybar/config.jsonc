@@ -15,6 +15,7 @@
     "idle_inhibitor"
   ],
   "modules-right": [
+    "custom/screen-record",
     "group/tray-expander",
     "hyprland/language",
     "bluetooth",
@@ -75,6 +76,14 @@
     "exec": "~/.config/waybar/claude-usage.py",
     "return-type": "json",
     "interval": 120
+  },
+  "custom/screen-record": {
+    "exec": "~/.config/waybar/screen-record.sh status",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "on-click": "~/.config/waybar/screen-record.sh toggle",
+    "on-click-right": "~/.config/waybar/screen-record.sh toggle region"
   },
   "cpu": {
     "interval": 5,
