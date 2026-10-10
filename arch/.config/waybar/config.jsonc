@@ -12,7 +12,8 @@
   ],
   "modules-center": [
     "clock",
-    "idle_inhibitor"
+    "idle_inhibitor",
+    "custom/night-light"
   ],
   "modules-right": [
     "custom/screen-record",
@@ -64,6 +65,13 @@
     },
     "tooltip-format-activated": "Idle inhibited (no lock/sleep)",
     "tooltip-format-deactivated": "Idle inhibitor off"
+  },
+  "custom/night-light": {
+    "exec": "~/.config/waybar/night-light.sh status",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 9,
+    "on-click": "~/.config/waybar/night-light.sh toggle"
   },
   "hyprland/language": {
     "format": "{}",
