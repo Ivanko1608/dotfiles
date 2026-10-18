@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Link the shared Claude Code config into ~/.claude (per-file symlinks).
-# Existing non-symlink files are moved aside as <name>.pre-dotfiles.
+# Existing non-symlink files are moved to ~/.claude/backups/pre-dotfiles/
+# (not left beside the original, where a copied skill dir would still load).
 set -euo pipefail
 
 src="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -10,7 +11,8 @@ link() {
 	local rel="$1"
 	mkdir -p "$(dirname "$dst/$rel")"
 	if [ -e "$dst/$rel" ] && [ ! -L "$dst/$rel" ]; then
-		mv "$dst/$rel" "$dst/$rel.pre-dotfiles"
+		mkdir -p "$dst/backups/pre-dotfiles"
+		mv "$dst/$rel" "$dst/backups/pre-dotfiles/$(basename "$rel").$(date +%s)"
 	fi
 	ln -sfn "$src/$rel" "$dst/$rel"
 	echo "linked $dst/$rel"
