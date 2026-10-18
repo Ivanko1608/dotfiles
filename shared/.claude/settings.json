@@ -1,4 +1,5 @@
 {
+  "syncClaudeAiPlugins": false,
   "env": {
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
   },
@@ -21,20 +22,15 @@
     ]
   },
   "enabledPlugins": {
-    "finance@knowledge-work-plugins": false,
     "caveman@caveman": true,
     "tinfoil@tinfoil": true,
     "superpowers@claude-plugins-official": true,
-    "mattpocock-skills@claude-plugins-official": false,
-    "understand-anything@understand-anything": true
+    "understand-anything@understand-anything": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "knowledge-work-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/knowledge-work-plugins"
-      }
-    },
     "caveman": {
       "source": {
         "source": "github",
@@ -60,8 +56,7 @@
       "effortLevel": "medium"
     }
   },
-  "tui": "fullscreen",
-  "agentPushNotifEnabled": true,
   "autoCompactWindow": 200000,
-  "syncClaudeAiPlugins": false
+  "tui": "fullscreen",
+  "agentPushNotifEnabled": true
 }
