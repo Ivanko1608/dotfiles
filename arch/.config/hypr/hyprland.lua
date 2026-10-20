@@ -16,7 +16,7 @@ hl.monitor({ output = "", mode = "highres", position = "auto", scale = 2 })
 ---------------------
 
 local terminal = "kitty"
-local fileManager = "dolphin"
+local fileManager = "env GDK_DEBUG=portals nautilus"
 local browser = "chromium"
 local menu = "wofi --show drun"
 
