@@ -7,6 +7,19 @@
     "type": "command",
     "command": "bash \"$HOME/.claude/hooks/caveman-statusline.sh\""
   },
+  "hooks": {
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/subagent-ultracave.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "finance@knowledge-work-plugins": false,
     "caveman@caveman": true,

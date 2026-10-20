@@ -21,4 +21,5 @@ link() {
 link settings.json
 link CLAUDE.md
 link hooks/caveman-statusline.sh
+link hooks/subagent-ultracave.sh
 link skills/graphify
