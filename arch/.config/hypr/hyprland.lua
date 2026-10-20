@@ -231,6 +231,10 @@ hl.bind(mainMod .. " + SHIFT + X", hl.dsp.window.move({ workspace = "special:mag
 -- Screenshot (region select)
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("flameshot gui"))
 
+-- Dictation (voxtype): hold to record, release to transcribe and type
+hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("voxtype record start"))
+hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("voxtype record stop"), { release = true })
+
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
