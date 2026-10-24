@@ -25,6 +25,7 @@ When the user types `/graphify`, use the installed graphify skill or instruction
 
 ## Working style
 - Change one file at a time; the user reviews every diff in nvim before the next.
+- Whitespace matters for readability: separate the logical steps inside a function with blank lines (setup, guard clauses, the main work, the return). Never pack a function into one dense block.
 - Never print file contents in chat. Summarize what changed and why, and map it to the task/requirement it serves.
 - No code comments unless asked, or unless something is genuinely non-obvious: a magic number, a deliberate trade-off, a known-unsafe choice kept on purpose. Then explain *why*, never *what*. Field comments go on the line above the field, not trailing.
 - Don't silently keep bad code from a starter/existing codebase. Flag it; if it stays, say why.
