@@ -3,23 +3,13 @@
   "env": {
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
   },
-  "model": "opus",
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"$HOME/.claude/hooks/caveman-statusline.sh\""
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Google_Drive__create_file"
+    ]
   },
+  "model": "opus",
   "hooks": {
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME/.claude/hooks/subagent-ultracave.sh\"",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "matcher": "^(startup|resume|clear|compact|fork)$",
@@ -33,6 +23,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/hooks/caveman-statusline.sh\""
+  },
   "enabledPlugins": {
     "caveman@caveman": true,
     "tinfoil@tinfoil": true,
@@ -40,7 +34,9 @@
     "understand-anything@understand-anything": true,
     "gopls-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -70,19 +66,6 @@
   },
   "autoCompactWindow": 200000,
   "tui": "fullscreen",
-  "agentPushNotifEnabled": true,
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "^(startup|resume|clear|compact|fork)$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '/home/user/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
-  }
+  "switchModelsOnFlag": false,
+  "agentPushNotifEnabled": true
 }

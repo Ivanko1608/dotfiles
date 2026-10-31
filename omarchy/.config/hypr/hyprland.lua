@@ -28,6 +28,10 @@ require("default.hypr.toggles")
 -- Add any other personal Hyprland configuration below.
 -- o.window("qemu", { workspace = "5" })
 
+-- Keep Super bindings working while the VM viewer has keyboard focus;
+-- otherwise the viewer's keyboard grab swallows every Hyprland shortcut.
+o.window("^(qemu|spicy)$", { no_shortcuts_inhibit = true })
+
 -- Don't dim picture-in-picture (float + pin come from Omarchy defaults).
 o.window({ tag = "pip" }, { no_dim = true })
 
