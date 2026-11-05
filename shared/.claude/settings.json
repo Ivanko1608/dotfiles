@@ -96,7 +96,7 @@
     "claude-code-playground-mods": {
       "source": {
         "source": "directory",
-        "path": "/home/user/code/claude-code-playground/claude-code/mods"
+        "path": "/home/user/.claude/mods/claude-code-playground/claude-code/mods"
       }
     }
   },
