@@ -33,6 +33,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("copyq")
 	hl.exec_cmd("flameshot")
 	hl.exec_cmd("hyprsunset")
+	hl.exec_cmd("systemctl --user start voxtype") -- unit is WantedBy graphical-session.target, which Hyprland never activates
 end)
 
 -------------------------------
