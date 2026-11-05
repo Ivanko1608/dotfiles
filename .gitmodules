@@ -1,0 +1,3 @@
+[submodule "shared/.claude/mods/claude-code-playground"]
+	path = shared/.claude/mods/claude-code-playground
+	url = https://github.com/anthropics/claude-code-playground.git
