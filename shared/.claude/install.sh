@@ -18,8 +18,11 @@ link() {
 	echo "linked $dst/$rel"
 }
 
+git -C "$src" submodule update --init mods/claude-code-playground
+
 link settings.json
 link CLAUDE.md
 link hooks/caveman-statusline.sh
 link hooks/subagent-ultracave.sh
 link skills/graphify
+link mods/claude-code-playground
