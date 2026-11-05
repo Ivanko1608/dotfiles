@@ -42,7 +42,8 @@
     "savvy-flow@claude-kit": true,
     "claude-reflect@claude-reflect-marketplace": true,
     "cache-tax@claude-code-mods": true,
-    "blast-radius@claude-code-playground-mods": true
+    "blast-radius@claude-code-playground-mods": true,
+    "cc-plugin-you-should-know@builtin": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
