@@ -84,5 +84,5 @@ Few and short.
 - **Return a zero value with the error.** Return `(T{}, err)` or `(nil, err)`, and never use the value when `err != nil`.
 - **Keep the HTTP layer thin:** parse, call the application layer, map, respond. Response DTOs live in the handler package.
 - **Use `ServeMux` patterns** like `GET /items/{id}` with `r.PathValue("id")`.
-- **No premature abstraction.** Don't add layers, options or plug-in points for a case that doesn't exist yet. Named helpers that make a function read as steps, and consumer interfaces for fakes, are not premature.
+- **No premature abstraction.** Don't add layers, configuration flags or plug-in points for a case that doesn't exist yet. Named helpers that make a function read as steps, and consumer interfaces for fakes, are not premature.
 - `gofmt`, `go vet` clean before handing anything over.
