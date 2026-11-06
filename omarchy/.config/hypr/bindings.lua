@@ -50,3 +50,5 @@ hl.unbind("SUPER + SHIFT + P")
 hl.unbind("SUPER + SHIFT + S")
 hl.unbind("SUPER + SHIFT + X")
 hl.unbind("SUPER + SHIFT + ALT + X")
+
+o.bind("SUPER + ALT + M", "Toggle Pearl mining", "pearl-mine toggle")
