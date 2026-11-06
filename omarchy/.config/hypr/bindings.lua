@@ -29,7 +29,8 @@
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 
 -- Personal bindings (ported from old bindings.conf).
-o.bind("SUPER + Q", "Terminal", { omarchy = "terminal" })
+-- Omarchy 4.5 binds SUPER+Q to close window; rebind so only the terminal fires.
+o.rebind("SUPER + Q", "Terminal", { omarchy = "terminal" })
 
 hl.unbind("SUPER + SHIFT + W")
 o.bind("SUPER + SHIFT + W", "Typora", { launch = "typora --enable-wayland-ime" })
@@ -52,3 +53,11 @@ hl.unbind("SUPER + SHIFT + X")
 hl.unbind("SUPER + SHIFT + ALT + X")
 
 o.bind("SUPER + ALT + M", "Toggle Pearl mining", "pearl-mine toggle")
+
+-- Dictation keys from before Alt + Space and Right Alt became the defaults.
+-- Remove these lines to give the keys back to applications.
+if o.dictation_installed and o.dictation_installed() then
+  hl.unbind("ALT + SPACE")
+  o.bind("SUPER + CTRL + X", "Toggle dictation", "omarchy-dictation toggle")
+  o.bind_hold("F9", "Start dictation (push-to-talk)", "omarchy-dictation start", "Stop dictation (push-to-talk)", "omarchy-dictation stop")
+end
