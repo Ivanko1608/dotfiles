@@ -52,8 +52,6 @@ hl.unbind("SUPER + SHIFT + S")
 hl.unbind("SUPER + SHIFT + X")
 hl.unbind("SUPER + SHIFT + ALT + X")
 
-o.bind("SUPER + ALT + M", "Toggle Pearl mining", "pearl-mine toggle")
-
 -- Dictation keys from before Alt + Space and Right Alt became the defaults.
 -- Remove these lines to give the keys back to applications.
 if o.dictation_installed and o.dictation_installed() then
