@@ -4,7 +4,8 @@
 -- 1440p at 1.25 fractional scale (ported from old monitors.conf).
 hl.env("GDK_SCALE", "1")
 hl.env("GDK_DPI_SCALE", "1.25")
-hl.env("QT_SCALE_FACTOR", "1.25")
+-- No QT_SCALE_FACTOR: Wayland Qt apps already get 1.25 from the compositor, and
+-- stacking both hides the Omarchy shell's menu and launcher.
 hl.env("XCURSOR_SIZE", "28")
 hl.config({ xwayland = { force_zero_scaling = true } })
 hl.monitor({ output = "", mode = "2560x1440@180", position = "auto", scale = 1.25 })
