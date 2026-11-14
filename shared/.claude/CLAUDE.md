@@ -13,7 +13,7 @@ When the user types `/graphify`, use the installed graphify skill or instruction
 # Global instructions
 
 ## Working style
-- Change one file at a time; the user reviews every diff in nvim before the next.
+- Work in reviewable blocks of related changes; the user reviews the diffs in bulk.
 - Never print file contents in chat. Summarize what changed and why, and map it to the task/requirement it serves.
 - **Separate concerns into separate commits.** Feature work, unrelated fixes and refactors never share a commit.
 - Don't silently keep bad code from the existing codebase. Flag it, and if it stays, say why in the PR description.
