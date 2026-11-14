@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Link the shared Claude Code config into ~/.claude (per-file symlinks).
-# Existing non-symlink files are moved to ~/.claude/backups/pre-dotfiles/
+# Link the shared Claude Code config into a config dir (per-file symlinks).
+# Usage: install.sh [config-dir], default ~/.claude (e.g. ~/.claude-work).
+# Existing non-symlink files are moved to <config-dir>/backups/pre-dotfiles/
 # (not left beside the original, where a copied skill dir would still load).
 set -euo pipefail
 
 src="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-dst="$HOME/.claude"
+dst="${1:-$HOME/.claude}"
 
 link() {
 	local rel="$1"
