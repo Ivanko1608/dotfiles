@@ -161,6 +161,22 @@ under the MIT license (`.config/omarchy-macos/LICENSE-omarchy`).
   `PASSWORDS_CMD`. AeroSpace's TOML can't include files, so you can't add new
   bindings here, only change what the existing ones launch.
 
+## Troubleshooting
+
+**A window vanishes when you switch workspaces and comes back with a
+swipe.** It ended up on another macOS Space, which AeroSpace can't manage. It
+assumes exactly one Space per display. Open Mission Control (Ctrl+↑):
+- Remove every extra Desktop (hover it, click ×).
+- Exit any fullscreen app with its green button.
+- Log out once after `defaults.sh apply`.
+
+Use ⌥F (AeroSpace fullscreen) rather than macOS fullscreen. Ghostty's ⌘Enter
+is set to non-native fullscreen so it stays put.
+
+**Big gap above windows.** `gaps.outer.top` in `aerospace.toml`: 8 on a
+notched built-in display (macOS already reserves the bar's strip there), 40
+elsewhere.
+
 ## Known gaps vs. real Omarchy
 
 - **No dwindle layout.** AeroSpace is i3-style tree tiling. Forks with dwindle

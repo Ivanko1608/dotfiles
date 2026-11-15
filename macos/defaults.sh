@@ -16,6 +16,7 @@ SETTINGS="$(
 	cat <<'EOF'
 com.apple.dock	expose-group-apps	bool	true
 com.apple.spaces	spans-displays	bool	true
+com.apple.dock	mru-spaces	bool	false
 NSGlobalDomain	KeyRepeat	int	2
 NSGlobalDomain	InitialKeyRepeat	int	15
 com.apple.dock	autohide	bool	true
@@ -26,6 +27,7 @@ EOF
 )"
 # expose-group-apps / spans-displays: recommended by AeroSpace's guide
 #   (Mission Control grouping; "Displays have separate Spaces" off).
+# mru-spaces: don't let macOS reorder Spaces behind AeroSpace's back.
 # KeyRepeat / InitialKeyRepeat: fastest values System Settings offers.
 # launchanim / NSAutomaticWindowAnimationsEnabled / reduceMotion: less motion.
 

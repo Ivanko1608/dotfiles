@@ -12,6 +12,10 @@ font-size = 14
 macos-option-as-alt = left
 
 macos-titlebar-style = hidden
+# Ghostty's fullscreen (Cmd+Enter) would otherwise be macOS native
+# fullscreen, which moves the window to its own Space where AeroSpace can't
+# manage it. Use Option+F (AeroSpace fullscreen) or this non-native mode.
+macos-non-native-fullscreen = true
 window-padding-x = 6
 window-padding-y = 4
 window-padding-balance = true
