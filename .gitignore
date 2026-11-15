@@ -1,0 +1,4 @@
+# Machine- or employer-specific overrides (~/.zshrc.local, apps.local.conf, ...).
+# "?" keeps these from matching the .local/ directory itself.
+?*.local
+?*.local.*

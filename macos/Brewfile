@@ -1,0 +1,25 @@
+# Omarchy-style desktop for macOS. Install with:  brew bundle --file macos/Brewfile
+# Official formulae/casks or each tool's official tap only.
+
+tap "nikitabobko/tap"     # AeroSpace (official tap)
+tap "FelixKratz/formulae" # SketchyBar + JankyBorders (official tap)
+
+# Window manager, bar, borders
+cask "nikitabobko/tap/aerospace"
+brew "FelixKratz/formulae/sketchybar"
+brew "FelixKratz/formulae/borders"
+
+# Terminal, launcher, font (bar/prompt icons need a Nerd Font)
+cask "ghostty"
+cask "raycast"
+cask "font-jetbrains-mono-nerd-font"
+
+# Shell
+brew "starship"
+brew "fzf"
+brew "eza"
+brew "zoxide"
+brew "bat"
+brew "ripgrep"
+brew "fd"
+brew "neovim"
