@@ -1,0 +1,62 @@
+#!/bin/bash
+# Minimal Omarchy-style bar: AeroSpace workspaces + front app on the left,
+# volume, battery and clock on the right. Plain shell plugins, no framework,
+# no permissions (no Wi-Fi item, no alias items).
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+# shellcheck source=SCRIPTDIR/colors.sh
+. "$CONFIG_DIR/colors.sh"
+
+FONT="JetBrainsMono Nerd Font"
+
+sketchybar --bar position=top height=32 color="$BAR_COLOR" \
+  padding_left=8 padding_right=8 shadow=off topmost=off
+
+sketchybar --default \
+  icon.font="$FONT:Bold:14.0" label.font="$FONT:Bold:13.0" \
+  icon.color="$FG_COLOR" label.color="$FG_COLOR" \
+  icon.padding_left=4 icon.padding_right=4 \
+  label.padding_left=4 label.padding_right=4 \
+  padding_left=2 padding_right=2
+
+# --- Workspaces (left). AeroSpace triggers these events (aerospace.toml).
+sketchybar --add event aerospace_workspace_change \
+           --add event aerospace_focus_change
+
+for sid in 1 2 3 4 5 6 7 8 9 10; do
+  sketchybar --add item "space.$sid" left \
+    --set "space.$sid" drawing=off \
+      label="$sid" icon.drawing=off \
+      label.padding_left=8 label.padding_right=8 \
+      background.color="$ACCENT_COLOR" background.corner_radius=4 \
+      background.height=22 background.drawing=off \
+      click_script="aerospace workspace $sid"
+done
+
+# One invisible controller refreshes all workspace items per event.
+sketchybar --add item spaces left \
+  --set spaces drawing=off updates=on script="$PLUGIN_DIR/aerospace.sh" \
+  --subscribe spaces aerospace_workspace_change aerospace_focus_change \
+    front_app_switched display_change system_woke
+
+sketchybar --add item front_app left \
+  --set front_app icon.drawing=off label.color="$MUTED_COLOR" \
+    padding_left=10 script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+# --- Right side (added right-to-left).
+sketchybar --add item clock right \
+  --set clock update_freq=15 script="$PLUGIN_DIR/clock.sh" \
+  --subscribe clock system_woke
+
+sketchybar --add item battery right \
+  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery power_source_change system_woke
+
+sketchybar --add item volume right \
+  --set volume script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
+
+sketchybar --update

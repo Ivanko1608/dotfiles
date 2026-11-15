@@ -1,0 +1,22 @@
+#!/bin/bash
+# JankyBorders config, run by `borders` on launch (brew services start borders).
+# Colors default to tokyo-night; `theme-set` writes the generated override.
+# Running this again while borders is up updates the running instance.
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+ACTIVE_COLOR=0xff7aa2f7
+INACTIVE_COLOR=0x00000000
+
+theme_file="$HOME/.local/state/omarchy-macos/theme/borders.sh"
+# shellcheck source=/dev/null
+[ -r "$theme_file" ] && . "$theme_file"
+
+options=(
+  style=round
+  width=4.0
+  hidpi=on
+  active_color="$ACTIVE_COLOR"
+  inactive_color="$INACTIVE_COLOR"
+)
+
+borders "${options[@]}"
