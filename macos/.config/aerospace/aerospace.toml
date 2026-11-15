@@ -44,8 +44,11 @@ inner.vertical = 8
 outer.left = 8
 outer.right = 8
 outer.bottom = 8
-# Leave room for SketchyBar (height 32) on whichever display shows it.
-outer.top = 40
+# Leave room for SketchyBar (height 32). On a notched built-in display macOS
+# already keeps the menu-bar strip free of windows (even with the menu bar
+# hidden) and SketchyBar sits in it, so only a normal gap is needed there.
+# On a non-notched built-in display, change 8 to 40.
+outer.top = [{ monitor."built-in" = 8 }, 40]
 
 # Workspaces 1-5 on the main display ("Use as: Main display" in System
 # Settings > Displays), 6-10 on the other one. With one display everything
