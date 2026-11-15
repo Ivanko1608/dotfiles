@@ -73,6 +73,21 @@ link() {
 
 echo "==> Homebrew packages"
 if [ "$do_brew" = 1 ]; then
+	prefix="$(brew --prefix)"
+	if [ ! -w "$prefix" ]; then
+		# Typically Homebrew was installed from another (admin) account.
+		owner="$(stat -f %Su "$prefix")"
+		cat >&2 <<EOF
+Homebrew at $prefix belongs to '$owner', so this account can't install
+into it. From the '$owner' account (or any admin account), run:
+
+  sudo chown -R $(whoami) $prefix
+
+then re-run this script. Or run it with --no-brew if everything in
+macos/Brewfile is already installed.
+EOF
+		exit 1
+	fi
 	brew bundle --file "$here/Brewfile"
 else
 	echo "  skipped (--no-brew)"
