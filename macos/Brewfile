@@ -23,3 +23,8 @@ brew "bat"
 brew "ripgrep"
 brew "fd"
 brew "neovim"
+
+# Toolchains LazyVim's Mason/Treesitter build with (shared/.config/nvim extras):
+brew "node"            # npm: vtsls, jsonls, markdownlint (lang.typescript/json/markdown)
+brew "go"              # go install: gopls, goimports, gofumpt, delve (lang.go)
+brew "tree-sitter-cli" # nvim-treesitter (main branch) compiles parsers with it
