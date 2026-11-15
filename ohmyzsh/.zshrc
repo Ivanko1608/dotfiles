@@ -1,7 +1,16 @@
+# macOS: put Homebrew on PATH (GUI-launched shells may not have it) and use
+# starship, themed by theme-set (macos package). Elsewhere: Powerlevel10k.
+if [[ "$OSTYPE" == darwin* ]]; then
+  if [[ -z "$HOMEBREW_PREFIX" && -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+  (( $+commands[starship] )) && USE_STARSHIP=1
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -z "$USE_STARSHIP" && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -15,7 +24,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ -n "$USE_STARSHIP" ]]; then
+  ZSH_THEME=""
+else
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -79,7 +92,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+[[ -r $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -111,12 +124,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -n "$USE_STARSHIP" || ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH=$PATH:/usr/local/go/bin
-export PATH="$PATH:/home/user/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
-source /usr/share/nvm/init-nvm.sh
+[[ -r /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 alias vim="nvim"
 alias v="nvim"
@@ -125,8 +138,10 @@ alias wayconfig="vim .config/waybar/config.jsonc"
 alias hyprconfig="vim ~/.config/hypr/hyprland.lua"
 
 # Init zoxide
-eval "$(zoxide init zsh)"
-alias cd="z"
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+  alias cd="z"
+fi
 
 # bun (only where installed)
 if [ -d "$HOME/.bun" ]; then
@@ -134,3 +149,10 @@ if [ -d "$HOME/.bun" ]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
   [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 fi
+
+# Per-tool snippets, e.g. ~/.config/zsh/omarchy-macos.zsh from the macos package.
+for f in ~/.config/zsh/*.zsh(N); do source "$f"; done
+unset f
+
+# Machine- or employer-specific settings; never committed.
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
