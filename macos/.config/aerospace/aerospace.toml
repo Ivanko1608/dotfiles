@@ -1,0 +1,174 @@
+# Omarchy-style tiling for macOS. Super = Option (alt).
+# Bindings mirror basecamp/omarchy default/hypr/bindings/tiling.lua and
+# applications.lua, plus personal overrides from omarchy/.config/hypr/bindings.lua
+# (Super+Q terminal, Super+C close). Cheatsheet: macos/README.md.
+#
+# Deliberately NOT bound, so they keep working everywhere:
+#   alt-h/j/k/l  (LazyVim Alt+j/k move-line; zsh Meta)
+#   alt-e/n/u/i/backtick  (US dead-key accents: á ñ ü î à)
+#   alt-space  (Raycast)
+#   alt-b, alt-d, alt-period, alt-backspace  (zsh Meta word editing)
+# Plain cmd-* shortcuts are never bound.
+#
+# Check without reloading:  aerospace reload-config --dry-run --no-gui
+
+config-version = 2
+
+start-at-login = true
+# SketchyBar and JankyBorders run as brew services; nothing to start here.
+after-startup-command = []
+auto-reload-config = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+persistent-workspaces = []
+key-mapping.preset = 'qwerty'
+
+# Tell SketchyBar which workspace is focused.
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$AEROSPACE_FOCUSED_WORKSPACE"',
+]
+# Windows opening/closing/moving changes which workspaces are empty.
+on-focus-changed = ['exec-and-forget sketchybar --trigger aerospace_focus_change']
+
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.right = 8
+outer.bottom = 8
+# Leave room for SketchyBar (height 32) on whichever display shows it.
+outer.top = 40
+
+# Workspaces 1-5 on the main display ("Use as: Main display" in System
+# Settings > Displays), 6-10 on the other one. With one display everything
+# falls back to main.
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = ['secondary', 'main']
+7 = ['secondary', 'main']
+8 = ['secondary', 'main']
+9 = ['secondary', 'main']
+10 = ['secondary', 'main']
+
+[mode.main.binding]
+# Applications. omac-launch reads ~/.config/omarchy-macos/apps.local.conf.
+alt-enter = 'exec-and-forget ~/.local/bin/omac-launch terminal'
+alt-q = 'exec-and-forget ~/.local/bin/omac-launch terminal'
+alt-shift-enter = 'exec-and-forget ~/.local/bin/omac-launch browser'
+alt-shift-b = 'exec-and-forget ~/.local/bin/omac-launch browser'
+alt-shift-f = 'exec-and-forget ~/.local/bin/omac-launch files'
+alt-shift-n = 'exec-and-forget ~/.local/bin/omac-launch editor'
+alt-shift-slash = 'exec-and-forget ~/.local/bin/omac-launch passwords'
+
+# Windows
+alt-c = 'close'
+alt-f = 'fullscreen'
+alt-t = 'layout floating tiling'
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout tiles accordion'
+alt-m = 'macos-native-minimize'
+
+# Focus crosses onto the next monitor at the screen edge, like Hyprland.
+alt-left = 'focus --boundaries all-monitors-outer-frame left'
+alt-down = 'focus --boundaries all-monitors-outer-frame down'
+alt-up = 'focus --boundaries all-monitors-outer-frame up'
+alt-right = 'focus --boundaries all-monitors-outer-frame right'
+
+alt-shift-left = 'move left'
+alt-shift-down = 'move down'
+alt-shift-up = 'move up'
+alt-shift-right = 'move right'
+
+alt-ctrl-shift-left = 'move-node-to-monitor --focus-follows-window left'
+alt-ctrl-shift-down = 'move-node-to-monitor --focus-follows-window down'
+alt-ctrl-shift-up = 'move-node-to-monitor --focus-follows-window up'
+alt-ctrl-shift-right = 'move-node-to-monitor --focus-follows-window right'
+
+alt-ctrl-left = 'move-workspace-to-monitor left'
+alt-ctrl-down = 'move-workspace-to-monitor down'
+alt-ctrl-up = 'move-workspace-to-monitor up'
+alt-ctrl-right = 'move-workspace-to-monitor right'
+
+alt-minus = 'resize width -50'
+alt-equal = 'resize width +50'
+alt-shift-minus = 'resize height -50'
+alt-shift-equal = 'resize height +50'
+alt-r = 'mode resize'
+
+# Workspaces
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
+
+alt-shift-1 = 'move-node-to-workspace --focus-follows-window 1'
+alt-shift-2 = 'move-node-to-workspace --focus-follows-window 2'
+alt-shift-3 = 'move-node-to-workspace --focus-follows-window 3'
+alt-shift-4 = 'move-node-to-workspace --focus-follows-window 4'
+alt-shift-5 = 'move-node-to-workspace --focus-follows-window 5'
+alt-shift-6 = 'move-node-to-workspace --focus-follows-window 6'
+alt-shift-7 = 'move-node-to-workspace --focus-follows-window 7'
+alt-shift-8 = 'move-node-to-workspace --focus-follows-window 8'
+alt-shift-9 = 'move-node-to-workspace --focus-follows-window 9'
+alt-shift-0 = 'move-node-to-workspace --focus-follows-window 10'
+
+alt-tab = 'workspace --wrap-around next'
+alt-shift-tab = 'workspace --wrap-around prev'
+alt-ctrl-tab = 'workspace-back-and-forth'
+
+# Bar
+alt-shift-space = 'exec-and-forget sketchybar --bar hidden=toggle'
+
+alt-shift-semicolon = 'mode service'
+
+[mode.resize.binding]
+left = 'resize width -50'
+right = 'resize width +50'
+up = 'resize height -50'
+down = 'resize height +50'
+h = 'resize width -50'
+l = 'resize width +50'
+k = 'resize height -50'
+j = 'resize height +50'
+minus = 'resize smart -50'
+equal = 'resize smart +50'
+b = ['balance-sizes', 'mode main']
+enter = 'mode main'
+esc = 'mode main'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+b = ['balance-sizes', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+
+# Pop-up style apps float. Open/save dialogs already float on their own.
+# Find an app's id with: aerospace list-apps
+[[on-window-detected]]
+if = '''
+    test %{app-bundle-id} = com.apple.systempreferences || \
+    test %{app-bundle-id} = com.1password.1password || \
+    test %{app-bundle-id} = com.apple.finder || \
+    test %{app-bundle-id} = com.apple.calculator || \
+    test %{app-bundle-id} = com.apple.archiveutility || \
+    test %{app-bundle-id} = com.raycast.macos'''
+run = 'layout floating'

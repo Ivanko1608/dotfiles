@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Launch an app role for AeroSpace bindings: terminal, browser, files, editor,
+# passwords. Override any role in ~/.config/omarchy-macos/apps.local.conf
+# (gitignored, machine-specific), e.g.
+#   BROWSER_CMD='open -na "Google Chrome" --args --new-window'
+# Uses only `open`, so no Automation/AppleScript permission is needed.
+set -euo pipefail
+
+TERMINAL_CMD='open -na Ghostty'
+BROWSER_CMD='open -a Safari'
+FILES_CMD="open \"$HOME\""
+# -e skips the shell, so go through a login zsh to get Homebrew on PATH.
+EDITOR_CMD="open -na Ghostty --args -e /bin/zsh -lc 'exec nvim'"
+PASSWORDS_CMD='open -a 1Password'
+
+local_conf="${XDG_CONFIG_HOME:-$HOME/.config}/omarchy-macos/apps.local.conf"
+if [ -r "$local_conf" ]; then
+	# shellcheck source=/dev/null
+	. "$local_conf"
+fi
+
+case "${1:-}" in
+terminal) cmd="$TERMINAL_CMD" ;;
+browser) cmd="$BROWSER_CMD" ;;
+files) cmd="$FILES_CMD" ;;
+editor) cmd="$EDITOR_CMD" ;;
+passwords) cmd="$PASSWORDS_CMD" ;;
+*)
+	echo "usage: omac-launch terminal|browser|files|editor|passwords" >&2
+	exit 2
+	;;
+esac
+
+eval "$cmd"
